@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Portfolio</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Dmitry Shupitski</div>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="theme-switch-wrapper">
+                    <span class="theme-icon"><i class="fas fa-sun"></i></span>
+                    <label class="theme-switch" for="checkbox">
+                        <input type="checkbox" id="checkbox" />
+                        <div class="slider round"></div>
+                    </label>
+                    <span class="theme-icon"><i class="fas fa-moon"></i></span>
+                </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Hello, I'm <span class="highlight">Dmitry Shupitski</span></h1>
+                <h2>Software Developer</h2>
+                <p>I build things for the web and beyond.</p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn primary-btn">View My Work</a>
+                    <a href="#contact" class="btn secondary-btn">Contact Me</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        I am a passionate software developer with 4 years of experience, I enjoy building applications that solve real-world problems.
+                    </p>
+                    <p>
+                        My focus is on creating intuitive, efficient, and scalable solutions that deliver excellent user experiences.
+                    </p>
+                </div>
+                <div class="about-image">
+                    <!-- Geometric design instead of a photo -->
+                    <div class="geometric-avatar">
+                        <div class="geo-shape shape1"></div>
+                        <div class="geo-shape shape2"></div>
+                        <div class="geo-shape shape3"></div>
+                        <div class="geo-shape shape4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">My Projects</h2>
+            <div class="projects-container">
+                <!-- Project 1: Invoice and Contract Management System -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="placeholder-image"><i class="fas fa-file-invoice-dollar"></i></div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Invoice & Contract Management System</h3>
+                        <p>A comprehensive system for managing invoices, contracts, clients, and payments with real-time analytics, themed UI, and responsive design.</p>
+                        <div class="project-tags">
+                            <span>HTML5</span>
+                            <span>CSS3</span>
+                            <span>JavaScript</span>
+                            <span>Chart.js</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/yourusername/invoice-system" target="_blank"><i class="fab fa-github"></i> Code</a>
+                            <a href="projects/invoice-system/index.html" target="_blank"><i class="fas fa-external-link-alt"></i> Live</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Task Manager -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="placeholder-image"><i class="fas fa-tasks"></i></div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Task Manager</h3>
+                        <p>A drag-and-drop task management application with categories, priority levels, and persistence.</p>
+                        <div class="project-tags">
+                            <span>HTML5</span>
+                            <span>CSS3</span>
+                            <span>JavaScript</span>
+                            <span>LocalStorage</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/yourusername/task-manager" target="_blank"><i class="fab fa-github"></i> Code</a>
+                            <a href="projects/task-manager/index.html" target="_blank"><i class="fas fa-external-link-alt"></i> Live</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: Data Visualization Dashboard -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="placeholder-image"><i class="fas fa-chart-line"></i></div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Interactive Data Dashboard</h3>
+                        <p>An elegant dashboard that transforms complex datasets into intuitive visualizations with real-time filtering, theme switching, and responsive design.</p>
+                        <div class="project-tags">
+                            <span>HTML5</span>
+                            <span>CSS3</span>
+                            <span>JavaScript</span>
+                            <span>D3.js</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/yourusername/data-visualization" target="_blank"><i class="fab fa-github"></i> Code</a>
+                            <a href="projects/data-visualization/index.html" target="_blank"><i class="fas fa-external-link-alt"></i> Live</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 4: AI Image Gallery -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="placeholder-image"><i class="fas fa-images"></i></div>
+                    </div>
+                    <div class="project-info">
+                        <h3>AI-Powered Image Gallery</h3>
+                        <p>A modern gallery that uses machine learning to intelligently categorize and filter images by content, color, or detected objects directly in the browser.</p>
+                        <div class="project-tags">
+                            <span>HTML5</span>
+                            <span>CSS3</span>
+                            <span>JavaScript</span>
+                            <span>TensorFlow.js</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/yourusername/ai-gallery" target="_blank"><i class="fab fa-github"></i> Code</a>
+                            <a href="projects/ai-gallery/index.html" target="_blank"><i class="fas fa-external-link-alt"></i> Live</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 5: Interactive Resume Builder -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="placeholder-image"><i class="fas fa-file-alt"></i></div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Interactive Resume Builder</h3>
+                        <p>A drag-and-drop resume creator with multiple templates, PDF export functionality, and ATS optimization features.</p>
+                        <div class="project-tags">
+                            <span>HTML5</span>
+                            <span>CSS3</span>
+                            <span>JavaScript</span>
+                            <span>PDF.js</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/yourusername/resume-builder" target="_blank"><i class="fab fa-github"></i> Code</a>
+                            <a href="projects/resume-builder/index.html" target="_blank"><i class="fas fa-external-link-alt"></i> Live</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 6: E-commerce Product Showcase -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="placeholder-image"><i class="fas fa-comments"></i></div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Real-time Chat Application</h3>
+                        <p>A responsive chat application with real-time messaging, user presence indicators, and multiple channels.</p>
+                        <div class="project-tags">
+                            <span>HTML5</span>
+                            <span>CSS3</span>
+                            <span>JavaScript</span>
+                            <span>WebSockets</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/yourusername/chat-app" target="_blank"><i class="fab fa-github"></i> Code</a>
+                            <a href="projects/chat-app/index.html" target="_blank"><i class="fas fa-external-link-alt"></i> Live</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Skills & Technologies</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Languages</h3>
+                    <ul class="skill-list">
+                        <li>JavaScript</li>
+                        <li>HTML5</li>
+                        <li>CSS3</li>
+                        <li>Python</li>
+                        <!-- Add more skills as needed -->
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Frameworks & Libraries</h3>
+                    <ul class="skill-list">
+                        <li>React</li>
+                        <li>Node.js</li>
+                        <li>Express</li>
+                        <li>Django</li>
+                        <!-- Add more skills as needed -->
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Tools & Platforms</h3>
+                    <ul class="skill-list">
+                        <li>Git</li>
+                        <li>GitHub</li>
+                        <li>VS Code</li>
+                        <li>AWS</li>
+                        <!-- Add more skills as needed -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <p>I'm currently open to new opportunities and collaborations. Feel free to reach out!</p>
+                <div class="contact-links">
+                    <a href="mailto:dmshupitski@gmail.com" class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        dmshupitski@gmail.com
+                    </a>
+                    <a href="https://linkedin.com/in/yourprofile" target="_blank" class="contact-item">
+                        <i class="fab fa-linkedin"></i>
+                        LinkedIn
+                    </a>
+                    <a href="https://github.com/usefulviper" target="_blank" class="contact-item">
+                        <i class="fab fa-github"></i>
+                        GitHub
+                    </a>
+                    <a href="https://twitter.com/usefulviper" target="_blank" class="contact-item">
+                        <i class="fab fa-twitter"></i>
+                        Twitter
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Your Name. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/background.js"></script>
+</body>
+</html> 

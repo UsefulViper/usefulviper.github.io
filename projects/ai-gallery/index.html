@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Image Gallery</title>
+    <meta name="description" content="An AI-powered image gallery that analyzes and categorizes your images using machine learning">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- TensorFlow.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.18.0"></script>
+    <!-- MobileNet model -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@2.1.0"></script>
+    <!-- COCO-SSD model -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.2"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-camera-retro"></i>
+                <h1>AI Gallery</h1>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li class="active"><a href="#"><i class="fas fa-images"></i> Gallery</a></li>
+                    <li><a href="#"><i class="fas fa-info-circle"></i> About</a></li>
+                    <li><a href="../../index.html"><i class="fas fa-arrow-left"></i> Back to Portfolio</a></li>
+                </ul>
+            </nav>
+            <div class="theme-switch-wrapper">
+                <i class="fas fa-sun"></i>
+                <label class="switch">
+                    <input type="checkbox" id="theme-switch">
+                    <span class="slider round"></span>
+                </label>
+                <i class="fas fa-moon"></i>
+            </div>
+            <button class="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </header>
+
+        <main>
+            <section class="hero">
+                <div class="hero-content">
+                    <h2>Discover Your Images <span>Through AI</span></h2>
+                    <p>Upload your images and let artificial intelligence analyze and organize them by content, objects, colors, and more.</p>
+                    <div class="upload-container">
+                        <label for="file-upload" class="upload-btn">
+                            <i class="fas fa-cloud-upload-alt"></i> Upload Images
+                        </label>
+                        <input type="file" id="file-upload" multiple accept="image/*">
+                        <p class="upload-info">or drag and drop images here</p>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="ai-visualization">
+                        <div class="node"></div>
+                        <div class="node"></div>
+                        <div class="node"></div>
+                        <div class="node"></div>
+                        <div class="connection"></div>
+                        <div class="connection"></div>
+                        <div class="connection"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="controls">
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Search by content, color, or object...">
+                    <button id="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="filter-container">
+                    <div class="filter-group">
+                        <label>Category:</label>
+                        <select id="category-filter">
+                            <option value="all">All Categories</option>
+                            <option value="nature">Nature</option>
+                            <option value="people">People</option>
+                            <option value="animals">Animals</option>
+                            <option value="architecture">Architecture</option>
+                            <option value="food">Food</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Color:</label>
+                        <div class="color-filters">
+                            <button class="color-filter" data-color="red" style="background-color: #e74c3c;"></button>
+                            <button class="color-filter" data-color="blue" style="background-color: #3498db;"></button>
+                            <button class="color-filter" data-color="green" style="background-color: #2ecc71;"></button>
+                            <button class="color-filter" data-color="yellow" style="background-color: #f1c40f;"></button>
+                            <button class="color-filter" data-color="purple" style="background-color: #9b59b6;"></button>
+                            <button class="color-filter" data-color="black" style="background-color: #34495e;"></button>
+                            <button class="color-filter" data-color="white" style="background-color: #ecf0f1;"></button>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <label>Sort By:</label>
+                        <select id="sort-filter">
+                            <option value="newest">Newest</option>
+                            <option value="oldest">Oldest</option>
+                            <option value="name">Name (A-Z)</option>
+                            <option value="confidence">AI Confidence</option>
+                        </select>
+                    </div>
+                    <button id="reset-filters">Reset Filters</button>
+                </div>
+            </section>
+
+            <section class="gallery">
+                <div class="status-message" id="initial-message">
+                    <i class="fas fa-image"></i>
+                    <h3>Upload Your Images to Begin</h3>
+                    <p>AI will automatically analyze them and categorize by content</p>
+                </div>
+                
+                <div class="loader" id="processing-loader">
+                    <div class="spinner"></div>
+                    <div class="processing-status">
+                        <h3>Processing Images with AI</h3>
+                        <p id="processing-details">Analyzing image 0 of 0...</p>
+                    </div>
+                </div>
+                
+                <div class="no-results" id="no-results">
+                    <i class="fas fa-search"></i>
+                    <h3>No Images Found</h3>
+                    <p>Try a different search term or filter</p>
+                </div>
+                
+                <div class="gallery-grid" id="gallery-grid">
+                    <!-- Image items will be inserted here dynamically -->
+                </div>
+            </section>
+        </main>
+
+        <div class="image-viewer" id="image-viewer">
+            <div class="viewer-controls">
+                <button id="close-viewer"><i class="fas fa-times"></i></button>
+                <button id="prev-image"><i class="fas fa-chevron-left"></i></button>
+                <button id="next-image"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="viewer-content">
+                <img id="viewer-image" src="" alt="Full size image">
+            </div>
+            <div class="viewer-info">
+                <div class="info-tabs">
+                    <button class="tab-btn active" data-tab="details">Details</button>
+                    <button class="tab-btn" data-tab="ai-analysis">AI Analysis</button>
+                    <button class="tab-btn" data-tab="objects">Detected Objects</button>
+                </div>
+                <div class="tab-content active" id="details-tab">
+                    <div class="info-row">
+                        <span class="info-label">Filename:</span>
+                        <span class="info-value" id="image-filename">image.jpg</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Size:</span>
+                        <span class="info-value" id="image-size">1200 x 800 px (2.4 MB)</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Date Added:</span>
+                        <span class="info-value" id="image-date">March 17, 2023</span>
+                    </div>
+                </div>
+                <div class="tab-content" id="ai-analysis-tab">
+                    <div class="predictions-list" id="predictions-list">
+                        <!-- AI predictions will be inserted here -->
+                    </div>
+                </div>
+                <div class="tab-content" id="objects-tab">
+                    <div class="detected-objects" id="detected-objects">
+                        <!-- Detected objects will be inserted here -->
+                    </div>
+                    <div class="objects-visualization">
+                        <div class="visualization-container">
+                            <img id="objects-image" src="" alt="Object detection visualization">
+                            <canvas id="objects-canvas"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-content">
+                <p>&copy; 2023 AI Gallery. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Privacy Policy</a>
+                    <a href="#" class="footer-link">Terms of Service</a>
+                    <a href="#" class="footer-link">Contact</a>
+                </div>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-tech">
+                <span>Powered by:</span>
+                <span class="tech-item">TensorFlow.js</span>
+                <span class="tech-item">MobileNet</span>
+                <span class="tech-item">COCO-SSD</span>
+            </div>
+        </footer>
+    </div>
+
+    <div class="drop-zone" id="drop-zone">
+        <div class="drop-zone-content">
+            <i class="fas fa-cloud-upload-alt"></i>
+            <h3>Drop Your Images Here</h3>
+        </div>
+    </div>
+    
+    <script src="js/app.js"></script>
+</body>
+</html> 
