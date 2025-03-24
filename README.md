@@ -58,7 +58,7 @@ To customize this portfolio for your own use:
 
 If you have any questions or suggestions, feel free to reach out:
 
-- Email: your.email@example.com
+- Email: dmshupitski@gmail.com
 - GitHub: [@UsefulViper](https://github.com/UsefulViper)
 
 ## 📄 License
